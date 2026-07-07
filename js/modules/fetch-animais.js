@@ -12,7 +12,7 @@ export default function fetchAnimais(url, target) {
 
   // Preenche cada animal no DOM
   const numerosGrid = document.querySelector(target);
-  function preencherAnimais(animais) {
+  function preencherAnimais(animal) {
     const divAnimal = createAnimal(animal);
     numerosGrid.appendChild(divAnimal);
   }
