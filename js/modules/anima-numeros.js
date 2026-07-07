@@ -1,6 +1,6 @@
 export default class AnimaNumeros {
   constructor(numeros, observerTarget, observerClass) {
-    this.numero = document.querySelectorAll(numeros);
+    this.numeros = document.querySelectorAll(numeros);
     this.observerTarget = document.querySelector(observerTarget);
     this.observerClass = observerClass;
 
@@ -33,8 +33,8 @@ export default class AnimaNumeros {
   // Função que ocorre quando as mutações ocorrerem
   handleMutation(mutation) {
     if (mutation[0].target.classList.contains(this.observerClass)) {
-      observer.disconnect();
-      animaNumeros();
+      this.observer.disconnect();
+      this.animaNumeros();
     }
   }
   // Adiciona o MutationObserver para verificar
