@@ -19,7 +19,7 @@ export default function fetchAnimais(url, target) {
 
   // Anima os números de cada animal
   function animaAnimaisNumeros() {
-    const animaNumeros = new AnimaNumeros('[data-numero]', 'numeros', 'ativo');
+    const animaNumeros = new AnimaNumeros('[data-numero]', '.numeros', 'ativo');
     animaNumeros.init();
   }
 
