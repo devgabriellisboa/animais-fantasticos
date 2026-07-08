@@ -1,4 +1,4 @@
-export default function initFetchBitcoin() {
+export default function fetchBitcoin(url, target) {
   console.log('Teste');
   fetch('https://blockchain.info/ticker')
     .then(response => response.json())
