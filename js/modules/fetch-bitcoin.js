@@ -1,6 +1,5 @@
 export default function fetchBitcoin(url, target) {
-  console.log('Teste');
-  fetch('https://blockchain.info/ticker')
+  fetch(url)
     .then(response => response.json())
     .then((bitcoin) => {
       const btcPreco = document.querySelector(target);
