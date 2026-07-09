@@ -1,50 +1,45 @@
-import debounce from "./debounce.js";
-
 export default class ScrollAnima {
   constructor(sections) {
     this.sections = document.querySelectorAll(sections);
-    this.windowMetade = window.innerHeight * 0.6;
-
-    this.checkDistance = debounce(this.checkDistance.bind(this), 50);
   }
 
-  // Pega a distância de cada item em relação
-  // ao topo do site
-  getDistance() {
-    this.distance = [...this.sections].map((section) => {
-      const offset = section.offsetTop;
-      return {
-        element: section,
-        offset: Math.floor(offset - this.windowMetade),
-      };
+  // Cria o observer que vai vigiar cada seção
+  createObserver() {
+    this.observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('ativo');
+        } else {
+          entry.target.classList.remove('ativo');
+        }
+      });
+    }, {
+      threshold: 0.15,
+      rootMargin: '0px 0px -20% 0px', // encolhe 20% da parte de baixo da tela
     });
   }
 
-  // Verifica a distância em cada objeto
-  // em relação ao scroll do site
-  checkDistance() {
-    this.distance.forEach((item) => {
-      if (window.pageYOffset > item.offset) {
-        item.element.classList.add('ativo');
-      } else if (item.element.classList.contains('ativo')) {
-        item.element.classList.remove('ativo');
-      }
+  // Registra cada seção pra ser observada
+  observeSections() {
+    this.sections.forEach((section) => {
+      this.observer.observe(section);
     });
   }
 
   init() {
     if (this.sections.length) {
-      this.getDistance();
-      this.checkDistance();
-      window.addEventListener('scroll', this.checkDistance);
+      this.createObserver();
+      this.observeSections();
     }
     return this;
   }
 
-  // Remove o event de scroll
+  // Para de observar todas as seções
   stop() {
-    window.removeEventListener('scroll', this.checkDistance);
+    if (this.observer) {
+      this.sections.forEach((section) => {
+        this.observer.unobserve(section);
+      });
+    }
   }
 }
-
-
