@@ -20,12 +20,14 @@ export default class Modal {
   eventToggleModal(event) {
     event.preventDefault();
     this.toggleModal();
+    this.botaoAbrir.classList.toggle('ativo');
   }
 
   // fecha o modal ao clicar do lado de fora
   cliqueForaModal(event) {
     if (event.target === this.containerModal) {
       this.toggleModal();
+      this.botaoAbrir.classList.toggle('ativo');
     }
   }
 
