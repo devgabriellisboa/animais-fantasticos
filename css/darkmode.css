@@ -1,0 +1,66 @@
+body.dark {
+  background: #1a1a1a;
+  color: #fff;
+}
+
+[data-darkmode] {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 9999;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 1.5rem;
+  padding: 20px;
+  border-radius: 50%;
+  transition: background 0.3s;
+}
+
+body.dark [data-darkmode] {
+  filter: invert(1);
+}
+
+.sol,
+.lua {
+  position: absolute;
+  transition: opacity 0.3s;
+}
+
+.lua {
+  opacity: 1;
+}
+
+.sol {
+  opacity: 0;
+}
+
+body.dark .lua {
+  opacity: 0;
+}
+
+body.dark .sol {
+  opacity: 1;
+}
+
+body.dark .animais-lista::-webkit-scrollbar-thumb {
+  background: #FB5;
+  border-left: 4px solid #1a1a1a;
+  border-right: 4px solid #1a1a1a;
+}
+
+body.dark .animais-lista::-webkit-scrollbar-track {
+  background: #1a1a1a;
+}
+
+body.dark .modal {
+  color: #222;
+}
+
+@media (max-width: 700px) {
+  [data-darkmode] {
+    top: 50px;
+    left: auto;
+    right: 25px;
+  }
+}
